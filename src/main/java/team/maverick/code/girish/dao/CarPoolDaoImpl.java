@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import team.maverick.code.girish.entity.UserDetail;
 
-@Transactional
+@Transactional("hibernateTransactionManager")
 public class CarPoolDaoImpl {
 
 	@Autowired

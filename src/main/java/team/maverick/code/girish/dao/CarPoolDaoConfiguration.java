@@ -39,7 +39,7 @@ public class CarPoolDaoConfiguration {
 	}
 	
 	@Bean
-	public PlatformTransactionManager getTransactionManager() {
+	public PlatformTransactionManager hibernateTransactionManager() {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(getSessionFactory().getObject());
 		return transactionManager;
 	}
