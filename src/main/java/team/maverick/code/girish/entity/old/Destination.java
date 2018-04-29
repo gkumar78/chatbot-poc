@@ -6,7 +6,9 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +28,7 @@ public class Destination implements java.io.Serializable {
 	@Column(name="area")
 	private String area;
 	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="destination", targetEntity=CarPoolSlot.class)
 	private Set carPoolSlots = new HashSet(0);
 
 	public Destination() {
