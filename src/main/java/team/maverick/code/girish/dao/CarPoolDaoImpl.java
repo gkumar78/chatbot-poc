@@ -1,6 +1,6 @@
 package team.maverick.code.girish.dao;
 
-import org.hibernate.Query;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,6 @@ public class CarPoolDaoImpl {
 	public UserDetail getUserDetail(String userId) {
 		UserDetail user = new UserDetail();
 		user.setUserId(userId);
-		return sessionFactory.getCurrentSession().
-				get(UserDetail.class, user);
+		return sessionFactory.getCurrentSession().get(UserDetail.class, user);
 	}
 }

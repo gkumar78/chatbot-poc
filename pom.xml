@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.7.RELEASE</version>
+		<version>1.5.12.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -18,7 +18,6 @@
 		<start-class>team.maverick.code.girish.App</start-class>
 		<java.version>1.8</java.version>
 		<lombok.version>1.14.8</lombok.version>
-		<rest.assured.version>2.3.3</rest.assured.version>
 	</properties>
 
 	<dependencies>
@@ -48,7 +47,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.0.12.Final</version>
+			<version>5.2.15.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
