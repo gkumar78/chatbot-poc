@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,18 +48,18 @@ public class CarPoolDaoConfiguration {
 	@Bean
 	public HibernateTemplate getHibernateTemplate() {
 		HibernateTemplate hibernateTemplate = new HibernateTemplate();
-		hibernateTemplate.setSessionFactory(getSessionFactory().getObject());
+		hibernateTemplate.setSessionFactory(getSessionFactory());
 		return hibernateTemplate;
 	}
 	
 	@Bean
 	public PlatformTransactionManager hibernateTransactionManager() {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(getSessionFactory().getObject());
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager(getSessionFactory());
 		return transactionManager;
 	}
 	
 	@Bean
-	public LocalSessionFactoryBean getSessionFactory() {
+	public SessionFactory getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDataSource());
 		sessionFactory.setHibernateProperties(getHibernateProperties());
@@ -67,7 +68,7 @@ public class CarPoolDaoConfiguration {
 		sessionFactory.setAnnotatedClasses(CarPoolSlot.class);
 		sessionFactory.setAnnotatedClasses(CarPoolBooking.class);
 		sessionFactory.setAnnotatedClasses(CarPoolBookingId.class);		
-		return sessionFactory;
+		return sessionFactory.getObject();
 	}
 	
 	Properties getHibernateProperties() {
