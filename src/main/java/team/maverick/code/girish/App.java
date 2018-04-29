@@ -1,13 +1,16 @@
 package team.maverick.code.girish;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
 
 import team.maverick.code.girish.dao.CarPoolDaoConfiguration;
 
 @SpringBootApplication
+@EnableAutoConfiguration(exclude=HibernateJpaAutoConfiguration.class)
 @Import(CarPoolDaoConfiguration.class)
 public class App {
 	
