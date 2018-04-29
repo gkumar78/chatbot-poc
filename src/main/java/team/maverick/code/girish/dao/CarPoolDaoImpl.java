@@ -3,6 +3,7 @@ package team.maverick.code.girish.dao;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
 import team.maverick.code.girish.entity.UserDetail;

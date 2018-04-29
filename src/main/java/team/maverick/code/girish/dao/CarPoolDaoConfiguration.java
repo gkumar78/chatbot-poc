@@ -4,11 +4,9 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -47,22 +45,20 @@ public class CarPoolDaoConfiguration {
 	}
 	
 	@Bean
-	@DependsOn("sessionFactory")
 	public HibernateTemplate getHibernateTemplate() {
 		HibernateTemplate hibernateTemplate = new HibernateTemplate();
-		hibernateTemplate.setSessionFactory(sessionFactory());
+		hibernateTemplate.setSessionFactory(getSessionFactory().getObject());
 		return hibernateTemplate;
 	}
 	
 	@Bean
-	@DependsOn("sessionFactory")
 	public PlatformTransactionManager hibernateTransactionManager() {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory());
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager(getSessionFactory().getObject());
 		return transactionManager;
 	}
 	
 	@Bean
-	public SessionFactory sessionFactory() {
+	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDataSource());
 		sessionFactory.setHibernateProperties(getHibernateProperties());
@@ -71,7 +67,7 @@ public class CarPoolDaoConfiguration {
 		sessionFactory.setAnnotatedClasses(CarPoolSlot.class);
 		sessionFactory.setAnnotatedClasses(CarPoolBooking.class);
 		sessionFactory.setAnnotatedClasses(CarPoolBookingId.class);		
-		return sessionFactory.getObject();
+		return sessionFactory;
 	}
 	
 	Properties getHibernateProperties() {
