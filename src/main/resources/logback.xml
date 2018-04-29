@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="APPLOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>carpool_app.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>carpool_app_%d{yyyy-MM-dd}.log</fileNamePattern>
+		</rollingPolicy>
+
+	</appender>
+
+	<logger name="com.springframework" level="info"
+		additivity="false">
+		<appender-ref ref="APPLOG" />
+	</logger>
+
+	<root level="debug">
+		<appender-ref ref="APPLOG" />
+	</root>
+
+</configuration>
