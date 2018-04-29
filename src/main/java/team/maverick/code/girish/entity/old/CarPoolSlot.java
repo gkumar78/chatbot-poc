@@ -47,7 +47,7 @@ public class CarPoolSlot implements java.io.Serializable {
 	@Column(name="last_update_time")
 	private Date lastUpdateTime;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="carPoolSlot")
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="carPoolSlot", targetEntity=CarPoolBooking.class)
 	private Set carPoolBookings = new HashSet(0);
 
 	public CarPoolSlot() {
