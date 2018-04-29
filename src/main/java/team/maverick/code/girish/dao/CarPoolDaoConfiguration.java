@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
@@ -45,8 +45,8 @@ public class CarPoolDaoConfiguration {
 	}
 	
 	@Bean
-	public AnnotationSessionFactoryBean getSessionFactory() {
-		AnnotationSessionFactoryBean sessionFactory = new AnnotationSessionFactoryBean();
+	public LocalSessionFactoryBean getSessionFactory() {
+		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDataSource());
 		sessionFactory.setHibernateProperties(getHibernateProperties());
 		return sessionFactory;
