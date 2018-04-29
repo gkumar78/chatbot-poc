@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -46,6 +47,7 @@ public class CarPoolDaoConfiguration {
 	}
 	
 	@Bean
+	@DependsOn("sessionFactory")
 	public HibernateTemplate getHibernateTemplate() {
 		HibernateTemplate hibernateTemplate = new HibernateTemplate();
 		hibernateTemplate.setSessionFactory(sessionFactory());
@@ -53,6 +55,7 @@ public class CarPoolDaoConfiguration {
 	}
 	
 	@Bean
+	@DependsOn("sessionFactory")
 	public PlatformTransactionManager hibernateTransactionManager() {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory());
 		return transactionManager;
