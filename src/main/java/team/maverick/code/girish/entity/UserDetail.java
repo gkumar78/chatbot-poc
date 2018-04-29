@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -16,10 +17,19 @@ import javax.persistence.Table;
 @Table(name="user_detail")
 public class UserDetail implements java.io.Serializable {
 
+	@Column(name="user_id")
+	@Id
 	private String userId;
+	
+	@Column(name="first_name")
 	private String firstName;
+	
+	@Column(name="last_name")
 	private String lastName;
+	
+	@Column(name="last_active_time")
 	private Date lastActiveTime;
+	
 	private Set carPoolSlots = new HashSet(0);
 	private Set carPoolBookings = new HashSet(0);
 
@@ -40,7 +50,6 @@ public class UserDetail implements java.io.Serializable {
 		this.carPoolBookings = carPoolBookings;
 	}
 
-	@Column(name="user_id")
 	public String getUserId() {
 		return this.userId;
 	}
