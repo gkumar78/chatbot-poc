@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -36,6 +37,13 @@ public class CarPoolDaoConfiguration {
 		dataSource.setUsername(username);
 		dataSource.setPassword(password);
 		return dataSource;
+	}
+	
+	@Bean
+	public HibernateTemplate getHibernateTemplate() {
+		HibernateTemplate hibernateTemplate = new HibernateTemplate();
+		hibernateTemplate.setSessionFactory(getSessionFactory().getObject());
+		return hibernateTemplate;
 	}
 	
 	@Bean
