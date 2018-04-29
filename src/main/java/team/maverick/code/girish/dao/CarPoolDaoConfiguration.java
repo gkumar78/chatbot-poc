@@ -13,6 +13,9 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import team.maverick.code.girish.entity.CarPoolBooking;
+import team.maverick.code.girish.entity.CarPoolSlot;
+import team.maverick.code.girish.entity.Destination;
 import team.maverick.code.girish.entity.UserDetail;
 
 @Configuration
@@ -59,6 +62,9 @@ public class CarPoolDaoConfiguration {
 		sessionFactory.setDataSource(getDataSource());
 		sessionFactory.setHibernateProperties(getHibernateProperties());
 		sessionFactory.setAnnotatedClasses(UserDetail.class);
+		sessionFactory.setAnnotatedClasses(Destination.class);
+		sessionFactory.setAnnotatedClasses(CarPoolBooking.class);
+		sessionFactory.setAnnotatedClasses(CarPoolSlot.class);
 		return sessionFactory;
 	}
 	
