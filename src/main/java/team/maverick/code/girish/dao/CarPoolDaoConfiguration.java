@@ -13,10 +13,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import team.maverick.code.girish.entity.old.CarPoolBooking;
-import team.maverick.code.girish.entity.old.CarPoolSlot;
-import team.maverick.code.girish.entity.old.Destination;
-import team.maverick.code.girish.entity.old.UserDetail;
+import team.maverick.code.girish.entity.CarPoolBooking;
+import team.maverick.code.girish.entity.CarPoolSlot;
+import team.maverick.code.girish.entity.Destination;
+import team.maverick.code.girish.entity.UserDetail;
 
 @Configuration
 public class CarPoolDaoConfiguration {

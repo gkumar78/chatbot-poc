@@ -1,4 +1,4 @@
-package team.maverick.code.girish.entity.old;
+package team.maverick.code.girish.entity;
 // Generated 29 Apr, 2018 4:20:19 PM by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
@@ -26,7 +26,7 @@ public class CarPoolSlot implements java.io.Serializable {
 	@Id
 	private int slotId;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER, targetEntity=Destination.class)
 	private Destination destination;
 	
 	@ManyToOne(fetch=FetchType.EAGER)

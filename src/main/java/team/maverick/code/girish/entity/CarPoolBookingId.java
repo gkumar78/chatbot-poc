@@ -1,4 +1,4 @@
-package team.maverick.code.girish.entity.old;
+package team.maverick.code.girish.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
