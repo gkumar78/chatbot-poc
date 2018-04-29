@@ -29,6 +29,7 @@ public class CarPoolBooking implements java.io.Serializable {
 	@ManyToOne(fetch=FetchType.EAGER)
 	private UserDetail userDetail;
 	
+	@Column(name="last_update_time")
 	private Date lastUpdateTime;
 
 	public CarPoolBooking() {

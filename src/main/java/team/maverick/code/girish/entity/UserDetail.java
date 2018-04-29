@@ -7,7 +7,9 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -30,7 +32,10 @@ public class UserDetail implements java.io.Serializable {
 	@Column(name="last_active_time")
 	private Date lastActiveTime;
 	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="userDetail", targetEntity=CarPoolSlot.class)
 	private Set carPoolSlots = new HashSet(0);
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="userDetail", targetEntity=CarPoolBooking.class)
 	private Set carPoolBookings = new HashSet(0);
 
 	public UserDetail() {
