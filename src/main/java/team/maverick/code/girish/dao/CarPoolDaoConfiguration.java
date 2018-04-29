@@ -48,18 +48,18 @@ public class CarPoolDaoConfiguration {
 	@Bean
 	public HibernateTemplate getHibernateTemplate() {
 		HibernateTemplate hibernateTemplate = new HibernateTemplate();
-		hibernateTemplate.setSessionFactory(getSessionFactory());
+		hibernateTemplate.setSessionFactory(sessionFactory());
 		return hibernateTemplate;
 	}
 	
 	@Bean
 	public PlatformTransactionManager hibernateTransactionManager() {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(getSessionFactory());
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory());
 		return transactionManager;
 	}
 	
 	@Bean
-	public SessionFactory getSessionFactory() {
+	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDataSource());
 		sessionFactory.setHibernateProperties(getHibernateProperties());
