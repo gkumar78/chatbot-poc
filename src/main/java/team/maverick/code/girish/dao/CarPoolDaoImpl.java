@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import team.maverick.code.girish.entity.UserDetail;
+import team.maverick.code.girish.entity.old.UserDetail;
 
 @Transactional
 public class CarPoolDaoImpl {

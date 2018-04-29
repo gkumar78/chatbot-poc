@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import team.maverick.code.girish.dao.CarPoolDaoImpl;
-import team.maverick.code.girish.entity.UserDetail;
+import team.maverick.code.girish.entity.old.UserDetail;
 
 @RestController
 public class HelloController {

@@ -1,4 +1,4 @@
-package team.maverick.code.girish.entity;
+package team.maverick.code.girish.entity.old;
 // Generated 29 Apr, 2018 4:20:19 PM by Hibernate Tools 5.2.3.Final
 
 import java.util.HashSet;

@@ -1,10 +1,16 @@
-package team.maverick.code.girish.entity;
+package team.maverick.code.girish.entity.old;
 // Generated 29 Apr, 2018 4:20:19 PM by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -14,11 +20,15 @@ import javax.persistence.Table;
 @Table(name="car_pool_booking")
 public class CarPoolBooking implements java.io.Serializable {
 
-	@Id
+	@EmbeddedId
 	private CarPoolBookingId id;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
 	private CarPoolSlot carPoolSlot;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
 	private UserDetail userDetail;
+	
 	private Date lastUpdateTime;
 
 	public CarPoolBooking() {

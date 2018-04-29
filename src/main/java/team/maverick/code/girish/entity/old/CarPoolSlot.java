@@ -1,13 +1,17 @@
-package team.maverick.code.girish.entity;
+package team.maverick.code.girish.entity.old;
 // Generated 29 Apr, 2018 4:20:19 PM by Hibernate Tools 5.2.3.Final
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,14 +26,28 @@ public class CarPoolSlot implements java.io.Serializable {
 	@Id
 	private int slotId;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Destination destination;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
 	private UserDetail userDetail;
+	
+	@Column(name="total_slot")
 	private Integer totalSlot;
+	
+	@Column(name="free_slot")
 	private Integer freeSlot;
+	
+	@Column(name="offer_time")
 	private Date offerTime;
+	
+	@Column(name="price")
 	private Integer price;
+	
+	@Column(name="last_update_time")
 	private Date lastUpdateTime;
 	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="carPoolSlot")
 	private Set carPoolBookings = new HashSet(0);
 
 	public CarPoolSlot() {
