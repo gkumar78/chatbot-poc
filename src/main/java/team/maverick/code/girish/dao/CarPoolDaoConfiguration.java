@@ -46,11 +46,11 @@ public class CarPoolDaoConfiguration {
 		return hibernateTemplate;
 	}
 	
-	@Bean
-	public PlatformTransactionManager hibernateTransactionManager() {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(getSessionFactory().getObject());
-		return transactionManager;
-	}
+//	@Bean
+//	public PlatformTransactionManager hibernateTransactionManager() {
+//		HibernateTransactionManager transactionManager = new HibernateTransactionManager(getSessionFactory().getObject());
+//		return transactionManager;
+//	}
 	
 	@Bean
 	public LocalSessionFactoryBean getSessionFactory() {
