@@ -4,6 +4,14 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.service.ServiceRegistry;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,15 +53,15 @@ public class CarPoolDaoConfiguration {
 	}
 	
 	@Bean
-	public HibernateTemplate getHibernateTemplate() {
+	public HibernateTemplate getHibernateTemplate(@Autowired SessionFactory sessionFactory) {
 		HibernateTemplate hibernateTemplate = new HibernateTemplate();
-		hibernateTemplate.setSessionFactory(getSessionFactory().getObject());
+		hibernateTemplate.setSessionFactory(sessionFactory);
 		return hibernateTemplate;
 	}
 	
 	@Bean
-	public PlatformTransactionManager hibernateTransactionManager() {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager(getSessionFactory().getObject());
+	public PlatformTransactionManager hibernateTransactionManager(@Autowired SessionFactory sessionFactory) {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 		return transactionManager;
 	}
 	
@@ -62,6 +70,13 @@ public class CarPoolDaoConfiguration {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDataSource());
 		sessionFactory.setHibernateProperties(getHibernateProperties());
+		
+		sessionFactory.getMetadataSources().addAnnotatedClass(UserDetail.class);
+		sessionFactory.getMetadataSources().addAnnotatedClass(Destination.class);
+		sessionFactory.getMetadataSources().addAnnotatedClass(CarPoolSlot.class);
+		sessionFactory.getMetadataSources().addAnnotatedClass(CarPoolBooking.class);
+		sessionFactory.getMetadataSources().addAnnotatedClass(CarPoolBookingId.class);
+		
 		sessionFactory.setAnnotatedClasses(UserDetail.class);
 		sessionFactory.setAnnotatedClasses(Destination.class);
 		sessionFactory.setAnnotatedClasses(CarPoolSlot.class);
