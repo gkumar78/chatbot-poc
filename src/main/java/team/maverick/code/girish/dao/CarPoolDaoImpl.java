@@ -17,6 +17,6 @@ public class CarPoolDaoImpl {
 	public UserDetail getUserDetail(String userId) {
 		UserDetail user = new UserDetail();
 		user.setUserId(userId);
-		return sessionFactory.getCurrentSession().get(UserDetail.class, user);
+		return sessionFactory.getCurrentSession().get(UserDetail.class, userId);
 	}
 }
