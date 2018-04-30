@@ -18,7 +18,7 @@ public class App {
 	
     public static void main(String[] args) {
         context = SpringApplication.run(App.class, args);
-        displayAllBeans();
+        //displayAllBeans();
     }
     
     private static void displayAllBeans() {

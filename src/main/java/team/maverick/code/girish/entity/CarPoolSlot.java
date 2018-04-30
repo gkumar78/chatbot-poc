@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,9 +28,11 @@ public class CarPoolSlot implements java.io.Serializable {
 	private int slotId;
 	
 	@ManyToOne(fetch=FetchType.EAGER, targetEntity=Destination.class)
+	@JoinColumn(name = "destination_id",referencedColumnName="destination_id")
 	private Destination destination;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "provider_id",referencedColumnName="user_id")
 	private UserDetail userDetail;
 	
 	@Column(name="total_slot")

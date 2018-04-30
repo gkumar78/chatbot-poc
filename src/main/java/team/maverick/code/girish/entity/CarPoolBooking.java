@@ -3,12 +3,15 @@ package team.maverick.code.girish.entity;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,12 +24,17 @@ import javax.persistence.Table;
 public class CarPoolBooking implements java.io.Serializable {
 
 	@EmbeddedId
+	 @AttributeOverrides( {
+	      @AttributeOverride(name = "slotId", column = @Column(name = "slot_id"))
+	       })
 	private CarPoolBookingId id;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "slot_id" , referencedColumnName = "slot_id",insertable = false, updatable=false)
 	private CarPoolSlot carPoolSlot;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "seeker_id" , referencedColumnName = "user_id",insertable = false, updatable=false)
 	private UserDetail userDetail;
 	
 	@Column(name="last_update_time")
