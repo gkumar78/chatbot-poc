@@ -71,11 +71,11 @@ public class CarPoolDaoConfiguration {
 		sessionFactory.setDataSource(getDataSource());
 		sessionFactory.setHibernateProperties(getHibernateProperties());
 		
-		sessionFactory.getMetadataSources().addAnnotatedClass(UserDetail.class);
-		sessionFactory.getMetadataSources().addAnnotatedClass(Destination.class);
-		sessionFactory.getMetadataSources().addAnnotatedClass(CarPoolSlot.class);
-		sessionFactory.getMetadataSources().addAnnotatedClass(CarPoolBooking.class);
-		sessionFactory.getMetadataSources().addAnnotatedClass(CarPoolBookingId.class);
+//		sessionFactory.getMetadataSources().addAnnotatedClass(UserDetail.class);
+//		sessionFactory.getMetadataSources().addAnnotatedClass(Destination.class);
+//		sessionFactory.getMetadataSources().addAnnotatedClass(CarPoolSlot.class);
+//		sessionFactory.getMetadataSources().addAnnotatedClass(CarPoolBooking.class);
+//		sessionFactory.getMetadataSources().addAnnotatedClass(CarPoolBookingId.class);
 		
 		sessionFactory.setAnnotatedClasses(UserDetail.class);
 		sessionFactory.setAnnotatedClasses(Destination.class);
