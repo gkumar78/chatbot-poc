@@ -1,6 +1,9 @@
 package team.maverick.code.girish;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -36,9 +39,9 @@ public class CarpoolController {
 	public static final Logger LOGGER = LoggerFactory.getLogger(CarpoolController.class);
 
 	@RequestMapping(name = "/", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
-	public @ResponseBody String handleAgentRequest(@RequestBody String webhookRequestString) throws InvalidProtocolBufferException {
+	public @ResponseBody String handleAgentRequest(@RequestBody String webhookRequestString) throws IOException {
 		System.out.println("Received Webhook request as " + webhookRequestString.toString());
-		WebhookRequest webhookRequest = WebhookRequest.parseFrom(ByteString.copyFromUtf8(webhookRequestString));
+		WebhookRequest webhookRequest = WebhookRequest.parseFrom(new ByteArrayInputStream(webhookRequestString.getBytes(StandardCharsets.UTF_8)));
 		LOGGER.info("Received Webhook request with Intent ", webhookRequest.getQueryResult().getIntent().toString());
 		return WebhookResponse.newBuilder().build().toByteString().toStringUtf8();
 	}
