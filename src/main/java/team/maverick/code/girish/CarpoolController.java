@@ -21,10 +21,6 @@ import com.google.cloud.dialogflow.v2.EventInput;
 import com.google.cloud.dialogflow.v2.EventInputOrBuilder;
 import com.google.cloud.dialogflow.v2.WebhookRequest;
 import com.google.cloud.dialogflow.v2.WebhookResponse;
-import com.google.cloud.dialogflow.v2.WebhookResponseOrBuilder;
-import com.google.cloud.dialogflow.v2.Intent.Message;
-import com.google.cloud.dialogflow.v2.Intent.MessageOrBuilder;
-import com.google.protobuf.ByteString;
 import com.google.protobuf.Struct;
 import com.google.protobuf.StructOrBuilder;
 import com.google.protobuf.UnknownFieldSet;
@@ -41,7 +37,7 @@ public class CarpoolController {
 	@RequestMapping(name = "/", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
 	public @ResponseBody String handleAgentRequest(@RequestBody String webhookRequestString) throws IOException {
 		System.out.println("Received Webhook request as " + webhookRequestString.toString());
-		WebhookRequest webhookRequest = WebhookRequest.parseFrom(new ByteArrayInputStream(webhookRequestString.getBytes(StandardCharsets.UTF_8)));
+		WebhookRequest webhookRequest = WebhookRequest.parseDelimitedFrom(new ByteArrayInputStream(webhookRequestString.getBytes(StandardCharsets.UTF_8)));
 		LOGGER.info("Received Webhook request with Intent ", webhookRequest.getQueryResult().getIntent().toString());
 		return WebhookResponse.newBuilder().build().toByteString().toStringUtf8();
 	}
