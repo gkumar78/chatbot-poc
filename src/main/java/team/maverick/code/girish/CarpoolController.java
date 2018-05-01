@@ -37,7 +37,7 @@ public class CarpoolController {
 	@RequestMapping(name = "/", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
 	public @ResponseBody String handleAgentRequest(@RequestBody String webhookRequestString) throws IOException {
 		System.out.println("Received Webhook request as " + webhookRequestString.toString());
-		WebhookRequest webhookRequest = WebhookRequest.parseFrom(new ByteArrayInputStream(webhookRequestString.getBytes(StandardCharsets.UTF_8)));
+		WebhookRequest webhookRequest = WebhookRequest.parseFrom(new ByteArrayInputStream(webhookRequestString.getBytes()));
 		LOGGER.info("Received Webhook request with Intent ", webhookRequest.getQueryResult().getIntent().toString());
 		return WebhookResponse.newBuilder().build().toByteString().toStringUtf8();
 	}
