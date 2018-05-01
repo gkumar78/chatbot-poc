@@ -17,19 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.cloud.dialogflow.v2.Context;
-import com.google.cloud.dialogflow.v2.ContextOrBuilder;
-import com.google.cloud.dialogflow.v2.EventInput;
-import com.google.cloud.dialogflow.v2.EventInputOrBuilder;
-import com.google.cloud.dialogflow.v2.WebhookRequest;
 import com.google.cloud.dialogflow.v2.WebhookResponse;
-import com.google.protobuf.Struct;
-import com.google.protobuf.StructOrBuilder;
-import com.google.protobuf.UnknownFieldSet;
-import com.google.protobuf.Descriptors.Descriptor;
-import com.google.protobuf.Descriptors.FieldDescriptor;
-import com.google.protobuf.Descriptors.OneofDescriptor;
-import com.google.protobuf.InvalidProtocolBufferException;
 
 @RestController
 public class CarpoolController {
