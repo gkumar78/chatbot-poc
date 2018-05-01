@@ -1,5 +1,6 @@
 package team.maverick.code.girish;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ import com.google.protobuf.UnknownFieldSet;
 import com.google.protobuf.Descriptors.Descriptor;
 import com.google.protobuf.Descriptors.FieldDescriptor;
 import com.google.protobuf.Descriptors.OneofDescriptor;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 @RestController
 public class CarpoolController {
@@ -34,9 +36,10 @@ public class CarpoolController {
 	public static final Logger LOGGER = LoggerFactory.getLogger(CarpoolController.class);
 
 	@RequestMapping(name = "/", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
-	public @ResponseBody WebhookResponse handleAgentRequest(@RequestBody WebhookRequest webhookRequest) {
-		System.out.println("Received Webhook request as " + webhookRequest.toString());
+	public @ResponseBody String handleAgentRequest(@RequestBody String webhookRequestString) throws InvalidProtocolBufferException {
+		System.out.println("Received Webhook request as " + webhookRequestString.toString());
+		WebhookRequest webhookRequest = WebhookRequest.parseFrom(ByteString.copyFromUtf8(webhookRequestString));
 		LOGGER.info("Received Webhook request with Intent ", webhookRequest.getQueryResult().getIntent().toString());
-		return WebhookResponse.newBuilder().build();
+		return WebhookResponse.newBuilder().build().toByteString().toStringUtf8();
 	}
 }
