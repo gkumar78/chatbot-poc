@@ -33,7 +33,7 @@ public class CarpoolController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger(CarpoolController.class);
 
-	@RequestMapping(name = "/", method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(name = "/", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
 	public @ResponseBody WebhookResponse handleAgentRequest(@RequestBody WebhookRequest webhookRequest) {
 		System.out.println("Received Webhook request as " + webhookRequest.toString());
 		LOGGER.info("Received Webhook request with Intent ", webhookRequest.getQueryResult().getIntent().toString());
