@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import team.maverick.code.girish.dao.CarPoolDaoImpl;
 import team.maverick.code.girish.entity.UserDetail;
 
-@RestController
+//@RestController
 public class HelloController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class); 
@@ -27,9 +27,9 @@ public class HelloController {
 		
 		UserDetail user = carPoolDaoImpl.getUserDetail(getUserData.getUserId());
 		if(user == null) {
-			return "Sorry, unable to Identify you. Please say your Id again!";
+			return "Sorry, unable to Identify you. Please say your Id again!\n";
 		} else {
-			return "Welcome " + user.getFirstName() + "!";
+			return "Welcome " + user.getFirstName() + "!\n";
 		}
 	}
 	
