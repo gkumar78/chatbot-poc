@@ -17,7 +17,12 @@
 
 	</appender>
 
-	<logger name="com.springframework" level="info"
+	<logger name="org.springframework" level="info"
+		additivity="false">
+		<appender-ref ref="APPLOG" />
+	</logger>
+	
+	<logger name="com.google.protobuf" level="trace"
 		additivity="false">
 		<appender-ref ref="APPLOG" />
 	</logger>
