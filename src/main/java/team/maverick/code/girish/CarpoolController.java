@@ -7,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,11 +37,15 @@ public class CarpoolController {
 	public static final Logger LOGGER = LoggerFactory.getLogger(CarpoolController.class);
 
 	@RequestMapping(name = "/", method = RequestMethod.POST, consumes = "application/json;charset=UTF-8")
-	public @ResponseBody String handleAgentRequest(@RequestBody String webhookRequestString) throws IOException {
+	public @ResponseBody String handleAgentRequest(@RequestBody String webhookRequestString) throws IOException, JSONException {
 		System.out.println("Received Webhook request as " + webhookRequestString.toString());
-		System.out.println("Converted Webhook request is " + new ByteArrayInputStream(webhookRequestString.trim().getBytes()).toString());
-		WebhookRequest webhookRequest = WebhookRequest.parseFrom(new ByteArrayInputStream(webhookRequestString.trim().getBytes()));
-		LOGGER.info("Received Webhook request with Intent ", webhookRequest.getQueryResult().getIntent().toString());
+		//System.out.println("Converted Webhook request is " + new ByteArrayInputStream(webhookRequestString.trim().getBytes()).toString());
+		//WebhookRequest webhookRequest = WebhookRequest.parseFrom(new ByteArrayInputStream(webhookRequestString.trim().getBytes()));
+		//LOGGER.info("Received Webhook request with Intent ", webhookRequest.getQueryResult().getIntent().toString());
+		JSONObject jsonObject = new JSONObject(webhookRequestString);
+		System.out.println("Parsed Webhook request is " + jsonObject.toString());
+		System.out.println("Received intent as " + jsonObject.getJSONObject("queryResult").getJSONObject("intent").getString("displayName"));
+		
 		return WebhookResponse.newBuilder().build().toByteString().toStringUtf8();
 	}
 }
