@@ -34,6 +34,6 @@ public class CarpoolController {
 		System.out.println("Parsed Webhook request is " + jsonObject.toString());
 		System.out.println("Received intent as " + jsonObject.getJSONObject("queryResult").getJSONObject("intent").getString("displayName"));
 		
-		return WebhookResponse.newBuilder().build().toByteString().toStringUtf8();
+		return new JSONObject().put("fulfillmentText", "Got response from Webhook").toString();
 	}
 }
